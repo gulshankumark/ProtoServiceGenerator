@@ -2,15 +2,16 @@
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class MessageDefinition : BaseDefinition, IEqualityComparer<MessageDefinition>
+    public class MessageDefinition : BaseDefinition, IEqualityComparer<MessageDefinition>
     {
         public MessageDefinition(string messageString, HeaderDefinition header)
         {
             PackageName = header.PackageDefinition.PackageName;
             var tuple = ParseMessageString(messageString);
             Name = tuple.MessageName;
+            OptionCSharpNamespace = header.OptionDefinitions.First(x => x.Identifier == "csharp_namespace").Value;
             FullyQualifiedProtoName = $"{PackageName}.{Name}";
             var properties = tuple.Properties;
 
@@ -36,8 +37,8 @@ namespace ProtoServiceGenerator.Model
         private (string MessageName, IReadOnlyList<string> Properties) ParseMessageString(string messageString)
         {
             messageString = messageString.Replace("\r\n", "").Replace("\t", "");
-            var messageName = messageString.Split(' ')[1];
-            var messagePropertiesRaw = messageString.Split('{', '}')[1];
+            var messageName = messageString.Split('{')[0].Trim().Split(' ')[1];
+            var messagePropertiesRaw = messageString.Split('{', '}')[1].Trim();
             var messageProperties = messagePropertiesRaw.Split(';');
 
             return (messageName, messageProperties);

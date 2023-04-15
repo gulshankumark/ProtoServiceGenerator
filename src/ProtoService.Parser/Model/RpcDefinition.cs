@@ -1,12 +1,15 @@
 ﻿using System.Linq;
-using ProtoServiceGenerator.Parser;
+using ProtoService.Parser.Parser;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class RpcDefinition
+    public class RpcDefinition
     {
-        public RpcDefinition(string rpcString, HeaderDefinition headerDefinition)
+        private readonly ParserMap _parserMap;
+
+        public RpcDefinition(ParserMap parserMap, string rpcString, HeaderDefinition headerDefinition)
         {
+            _parserMap = parserMap;
             ParseRpcString(rpcString, headerDefinition);
         }
 
@@ -21,8 +24,8 @@ namespace ProtoServiceGenerator.Model
                 IsRequestStream = true;
                 inParamString = inParamString.Replace("stream", "").Trim();
             }
-            
-            var outParamString = splitsParam[3]; 
+
+            var outParamString = splitsParam[3];
             if (outParamString.StartsWith("stream"))
             {
                 IsResponseStream = true;
@@ -42,17 +45,17 @@ namespace ProtoServiceGenerator.Model
         private BaseDefinition GetParameter(string paramString, HeaderDefinition headerDefinition)
         {
             var fullyQualifiedName = $"{headerDefinition.PackageDefinition.PackageName}.{paramString}";
-            if (ProtoParser.Instance.EnumDefinitions.ContainsKey(fullyQualifiedName))
+            if (_parserMap.EnumDefinitions.ContainsKey(fullyQualifiedName))
             {
-                return ProtoParser.Instance.EnumDefinitions[fullyQualifiedName];
+                return _parserMap.EnumDefinitions[fullyQualifiedName];
             }
 
-            foreach (var importDefinition in headerDefinition.ImportDefinitions)
+            if (_parserMap.MessageDefinitions.ContainsKey(fullyQualifiedName))
             {
-                fullyQualifiedName = $"{importDefinition.ImportProtoName}";
+                return _parserMap.MessageDefinitions[fullyQualifiedName];
             }
 
-            return null;
+            return WellKnownGrpcTypes.Types[paramString];
         }
     }
 }

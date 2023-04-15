@@ -1,6 +1,6 @@
-﻿namespace ProtoServiceGenerator.Model
+﻿namespace ProtoService.Parser.Model
 {
-    internal class EnumValueDefinition
+    public class EnumValueDefinition
     {
         public EnumValueDefinition(string enumValueString)
         {

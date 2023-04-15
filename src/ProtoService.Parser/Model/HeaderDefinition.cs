@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class HeaderDefinition
+    public class HeaderDefinition
     {
         public HeaderDefinition(string headerString)
         {

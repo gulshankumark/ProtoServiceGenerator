@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.0.1" />
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="System.Collections.Immutable" />
+	  <PackageReference Include="Microsoft.CodeAnalysis" PrivateAssets="all" />
+	</ItemGroup>
+
+</Project>

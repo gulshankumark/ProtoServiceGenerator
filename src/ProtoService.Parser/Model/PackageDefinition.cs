@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class PackageDefinition
+    public class PackageDefinition
     {
         public PackageDefinition(string packageString)
         {

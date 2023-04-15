@@ -1,24 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using ProtoService.Parser.Parser;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class ServiceDefinition : BaseDefinition, IEqualityComparer<ServiceDefinition>
+    public class ServiceDefinition : BaseDefinition, IEqualityComparer<ServiceDefinition>
     {
-        public ServiceDefinition(string serviceString, HeaderDefinition header)
+        public ServiceDefinition(ParserMap parserMap, string serviceString, HeaderDefinition header)
         {
             PackageName = header.PackageDefinition.PackageName;
             var tuple = ParseServiceString(serviceString);
             Name = tuple.MessageName;
+            OptionCSharpNamespace = header.OptionDefinitions.First(x => x.Identifier == "csharp_namespace").Value;
             FullyQualifiedProtoName = $"{PackageName}.{Name}";
             var properties = tuple.Properties;
 
-            RpcDefinitions = properties.Where(x => !string.IsNullOrEmpty(x)).Select(x => new RpcDefinition(x, header)).ToImmutableList();
+            RpcDefinitions = properties.Where(x => !string.IsNullOrEmpty(x)).Select(x => new RpcDefinition(parserMap, x, header)).ToImmutableList();
         }
-        
-        public IImmutableList<RpcDefinition> RpcDefinitions { get; }
 
+        public IImmutableList<RpcDefinition> RpcDefinitions { get; }
+        
         public bool Equals(ServiceDefinition x, ServiceDefinition y)
         {
             if (ReferenceEquals(x, y)) return true;
@@ -36,8 +38,8 @@ namespace ProtoServiceGenerator.Model
         private (string MessageName, IReadOnlyList<string> Properties) ParseServiceString(string serviceString)
         {
             serviceString = serviceString.Replace("\r\n", "").Replace("\t", "");
-            var serviceName = serviceString.Split(' ')[1];
-            var rpcRaw = serviceString.Split('{', '}')[1];
+            var serviceName = serviceString.Split('{')[0].Trim().Split(' ')[1];
+            var rpcRaw = serviceString.Split('{', '}')[1].Trim();
             var rpcs = rpcRaw.Split(';');
 
             return (serviceName, rpcs);

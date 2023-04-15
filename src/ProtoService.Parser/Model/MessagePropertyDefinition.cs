@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class MessagePropertyDefinition
+    public class MessagePropertyDefinition
     {
         private static readonly IDictionary<string, MessagePropertyType> map =
             new Dictionary<string, MessagePropertyType>
@@ -59,7 +59,7 @@ namespace ProtoServiceGenerator.Model
     }
 
     // Reference: https://developers.google.com/protocol-buffers/docs/proto3#scalar
-    internal enum MessagePropertyType
+    public enum MessagePropertyType
     {
         DoubleVal,
         FloatVal,

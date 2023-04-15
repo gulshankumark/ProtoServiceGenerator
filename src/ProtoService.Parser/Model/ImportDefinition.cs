@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class ImportDefinition
+    public class ImportDefinition
     {
         public ImportDefinition(string importProtoName)
         {

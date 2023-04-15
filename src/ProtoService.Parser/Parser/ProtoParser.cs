@@ -2,30 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis.Text;
-using ProtoServiceGenerator.Model;
+using ProtoService.Parser.Model;
 
-namespace ProtoServiceGenerator.Parser
+namespace ProtoService.Parser.Parser
 {
-    internal class ProtoParser
+    public class ProtoParser
     {
-        private ProtoParser()
+        private readonly ParserMap _parserMap;
+
+        public ProtoParser(ParserMap parserMap)
         {
-            MessageDefinitions = new Dictionary<string, MessageDefinition>();
-            ServiceDefinitions = new Dictionary<string, ServiceDefinition>();
-            EnumDefinitions = new Dictionary<string, EnumDefinition>();
+            _parserMap = parserMap;
         }
 
-        public static ProtoParser Instance { get; } = new ProtoParser();
-
-        public IDictionary<string, EnumDefinition> EnumDefinitions { get; }
-        public IDictionary<string, MessageDefinition> MessageDefinitions { get; }
-        public IDictionary<string, ServiceDefinition> ServiceDefinitions { get; }
+        public void SetAssemblyName(string assemblyName)
+        {
+            _parserMap.SetAssemblyName(assemblyName);
+        }
 
         public void Parse(SourceText content)
         {
             var lines = content.Lines;
             var linesString = lines.Select(x => x.ToString());
-            var commentsExcluded = linesString.Where(x => !x.StartsWith("//"));
+            var commentsExcluded = linesString.Where(x => !x.Trim().StartsWith("//"));
             var str = string.Join(Environment.NewLine, commentsExcluded);
             HeaderDefinition header = new HeaderDefinition(str);
             var enums = GetBlock(str, "enum");
@@ -35,25 +34,20 @@ namespace ProtoServiceGenerator.Parser
             foreach (var enumString in enums)
             {
                 EnumDefinition enumDefinition = new EnumDefinition(enumString, header);
-                EnumDefinitions.Add(enumDefinition.FullyQualifiedProtoName, enumDefinition);
+                _parserMap.EnumDefinitions.Add(enumDefinition.FullyQualifiedProtoName, enumDefinition);
             }
 
             foreach (var messageString in messages)
             {
                 MessageDefinition messageDefinition = new MessageDefinition(messageString, header);
-                MessageDefinitions.Add(messageDefinition.FullyQualifiedProtoName, messageDefinition);
+                _parserMap.MessageDefinitions.Add(messageDefinition.FullyQualifiedProtoName, messageDefinition);
             }
 
             foreach (var serviceString in services)
             {
-                ServiceDefinition serviceDefinition = new ServiceDefinition(serviceString, header);
-                ServiceDefinitions.Add(serviceDefinition.FullyQualifiedProtoName, serviceDefinition);
+                ServiceDefinition serviceDefinition = new ServiceDefinition(_parserMap, serviceString, header);
+                _parserMap.ServiceDefinitions.Add(serviceDefinition.FullyQualifiedProtoName, serviceDefinition);
             }
-        }
-
-        public void GenerateData()
-        {
-
         }
 
         private IReadOnlyList<string> GetBlock(string str, string identifier)

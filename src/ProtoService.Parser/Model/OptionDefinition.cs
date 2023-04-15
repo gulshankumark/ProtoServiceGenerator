@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
-namespace ProtoServiceGenerator.Model
+namespace ProtoService.Parser.Model
 {
-    internal class OptionDefinition
+    public class OptionDefinition
     {
         public OptionDefinition(string optionString)
         {

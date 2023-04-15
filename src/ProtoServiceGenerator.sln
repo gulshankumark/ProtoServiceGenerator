@@ -3,7 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoServiceGenerator", "ProtoServiceGenerator\ProtoServiceGenerator.csproj", "{92C6478A-4408-4877-B851-A48E912D0303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoServiceGenerator", "ProtoServiceGenerator\ProtoServiceGenerator.csproj", "{92C6478A-4408-4877-B851-A48E912D0303}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoServiceGenerator.Test", "ProtoServiceGenerator.Test\ProtoServiceGenerator.Test.csproj", "{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoService.Parser", "ProtoService.Parser\ProtoService.Parser.csproj", "{88094F73-C7DD-4603-8958-D3C5896F34B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoEndPointGenerator", "ProtoEndPointGenerator\ProtoEndPointGenerator.csproj", "{A316E7EC-A500-45D0-84B0-0C9E8067693F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{AE1A29AB-B1CC-4A8F-82BD-B7EE897B21E8}"
+	ProjectSection(SolutionItems) = preProject
+		packages.props = packages.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,18 @@ Global
 		{92C6478A-4408-4877-B851-A48E912D0303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C6478A-4408-4877-B851-A48E912D0303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C6478A-4408-4877-B851-A48E912D0303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88094F73-C7DD-4603-8958-D3C5896F34B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88094F73-C7DD-4603-8958-D3C5896F34B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88094F73-C7DD-4603-8958-D3C5896F34B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88094F73-C7DD-4603-8958-D3C5896F34B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A316E7EC-A500-45D0-84B0-0C9E8067693F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A316E7EC-A500-45D0-84B0-0C9E8067693F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A316E7EC-A500-45D0-84B0-0C9E8067693F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A316E7EC-A500-45D0-84B0-0C9E8067693F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
