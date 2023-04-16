@@ -37,7 +37,17 @@ namespace ProtoService.Parser.Model
 
             return $"{ProtoCSharpMapping[Name]} request, Grpc.Core.ServerCallContext{(isNullableContext ? "?" : string.Empty)} context{(isNullableContext ? " = null" : string.Empty)}";
         }
-        
+
+        public override string ToControllerInputParameter()
+        {
+            if (string.IsNullOrEmpty(Name))
+            {
+                return string.Empty;
+            }
+
+            return $"{ProtoCSharpMapping[Name]} request";
+        }
+
         public override string ToServiceInputParameter(bool isNullableContext)
         {
             if (string.IsNullOrEmpty(Name))
