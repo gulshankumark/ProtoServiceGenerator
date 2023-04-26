@@ -61,10 +61,10 @@ namespace Proto.Service.Parser.Model
         {
             if (string.IsNullOrEmpty(Name))
             {
-                return "Task";
+                return "System.Threading.Tasks.Task";
             }
 
-            return $"Task<{ProtoCSharpMapping[Name]}";
+            return $"System.Threading.Tasks.Task<{ProtoCSharpMapping[Name]}";
         }
     }
 }

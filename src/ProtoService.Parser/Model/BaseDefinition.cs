@@ -24,7 +24,7 @@
 
         public virtual string ToResponseParameter()
         {
-            return $"Task<{OptionCSharpNamespace}.{Name}>";
+            return $"System.Threading.Tasks.Task<{OptionCSharpNamespace}.{Name}>";
         }
     }
 }

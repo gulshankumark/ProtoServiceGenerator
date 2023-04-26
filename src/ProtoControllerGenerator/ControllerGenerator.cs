@@ -85,7 +85,7 @@ namespace Proto.Service.AspNetController.Generator
                 builder.AppendLine(inputParam != null
                     ? $"\t[Microsoft.AspNetCore.Mvc.HttpPost(nameof({rpcDefinition.RpcName}))]"
                     : $"\t[Microsoft.AspNetCore.Mvc.HttpGet(nameof({rpcDefinition.RpcName}))]");
-                builder.AppendLine($"\tpublic async partial Task<Microsoft.AspNetCore.Mvc.IActionResult> {rpcDefinition.RpcName}({inputParam})");
+                builder.AppendLine($"\tpublic async partial System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> {rpcDefinition.RpcName}({inputParam})");
                 builder.AppendLine("\t{");
                 builder.AppendLine("\t\ttry");
                 builder.AppendLine("\t\t{");
