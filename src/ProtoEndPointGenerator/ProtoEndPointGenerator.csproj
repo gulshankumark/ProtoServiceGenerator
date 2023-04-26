@@ -2,10 +2,17 @@
 	<Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.0.1" />
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>Proto.Service.ProtoEndPoint.Generator</AssemblyName>
+		<RootNamespace>$(AssemblyName)</RootNamespace>
 		<IsPackable>false</IsPackable>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<OutputPath>..\..\admin\bin\$(AssemblyName)\$(Configuration)</OutputPath>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\admin\Version.cs" Link="Properties\Version.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Google.Protobuf" />
@@ -24,11 +31,12 @@
 
 	<PropertyGroup>
 		<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
-	<Target Name="GetDependencyTargetPaths">
+	<Target Name="GetDependencyTargetPaths" AfterTargets="ResolvePackageDependenciesForBuild">
 		<ItemGroup>
-			<TargetPathWithTargetPlatformMoniker Include="D:\WS\gulshankumark\ProtoServiceGenerator\src\ProtoService.Parser\bin\Debug\ProtoService.Parser.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitions)" IncludeRuntimeDependency="false" />
 		</ItemGroup>
 	</Target>
 

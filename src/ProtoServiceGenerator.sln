@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoServiceGenerator", "ProtoServiceGenerator\ProtoServiceGenerator.csproj", "{92C6478A-4408-4877-B851-A48E912D0303}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoServiceGenerator.Test", "ProtoServiceGenerator.Test\ProtoServiceGenerator.Test.csproj", "{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoService.Parser", "ProtoService.Parser\ProtoService.Parser.csproj", "{88094F73-C7DD-4603-8958-D3C5896F34B1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoEndPointGenerator", "ProtoEndPointGenerator\ProtoEndPointGenerator.csproj", "{A316E7EC-A500-45D0-84B0-0C9E8067693F}"
@@ -18,6 +16,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{AE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoControllerGenerator", "ProtoControllerGenerator\ProtoControllerGenerator.csproj", "{844025BC-B2E1-44AC-86E8-EC9FD9A04289}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{426CF6DB-35EF-4A25-BAF4-C130151204AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{948BD1DE-042F-4C0B-AAA4-D8DE1B1E2724}"
+	ProjectSection(SolutionItems) = preProject
+		..\admin\Proto.Service.AspNetController.Generator.nuspec = ..\admin\Proto.Service.AspNetController.Generator.nuspec
+		..\admin\Proto.Service.Interface.Generator.nuspec = ..\admin\Proto.Service.Interface.Generator.nuspec
+		..\admin\Proto.Service.ProtoEndPoint.Generator.nuspec = ..\admin\Proto.Service.ProtoEndPoint.Generator.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +35,6 @@ Global
 		{92C6478A-4408-4877-B851-A48E912D0303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C6478A-4408-4877-B851-A48E912D0303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C6478A-4408-4877-B851-A48E912D0303}.Release|Any CPU.Build.0 = Release|Any CPU
-		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{114EDB30-4D97-4E11-BEC7-CA3658EB8B81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88094F73-C7DD-4603-8958-D3C5896F34B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88094F73-C7DD-4603-8958-D3C5896F34B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88094F73-C7DD-4603-8958-D3C5896F34B1}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Proto.Service.Interface.Generator;
 
 namespace ProtoServiceGenerator.Test;
 

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using ProtoService.Parser.Model;
-using ProtoService.Parser.Parser;
+using Proto.Service.Parser.Model;
+using Proto.Service.Parser.Parser;
 
-namespace ProtoControllerGenerator
+namespace Proto.Service.AspNetController.Generator
 {
     [Generator]
     public class ControllerGenerator : ISourceGenerator
@@ -22,12 +22,12 @@ namespace ProtoControllerGenerator
 
         public void Initialize(GeneratorInitializationContext context)
         {
-#if DEBUG
-            if (!Debugger.IsAttached)
-            {
-                Debugger.Launch();
-            }
-#endif
+//#if DEBUG
+//            if (!Debugger.IsAttached)
+//            {
+//                Debugger.Launch();
+//            }
+//#endif
         }
 
         public void Execute(GeneratorExecutionContext context)

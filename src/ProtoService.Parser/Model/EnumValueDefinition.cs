@@ -1,4 +1,4 @@
-﻿namespace ProtoService.Parser.Model
+﻿namespace Proto.Service.Parser.Model
 {
     public class EnumValueDefinition
     {

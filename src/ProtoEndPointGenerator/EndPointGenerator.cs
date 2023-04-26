@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using ProtoService.Parser.Model;
-using ProtoService.Parser.Parser;
+using Proto.Service.Parser.Model;
+using Proto.Service.Parser.Parser;
 
-namespace ProtoEndPointGenerator
+namespace Proto.Service.ProtoEndPoint.Generator
 {
     [Generator]
     public class EndPointGenerator : ISourceGenerator

@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace ProtoService.Parser.Model
+namespace Proto.Service.Parser.Model
 {
     public class MessageDefinition : BaseDefinition, IEqualityComparer<MessageDefinition>
     {

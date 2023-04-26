@@ -1,7 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ProtoService.Parser.Model
+namespace Proto.Service.Parser.Model
 {
     public class WellKnownTypeDefinition : BaseDefinition
     {

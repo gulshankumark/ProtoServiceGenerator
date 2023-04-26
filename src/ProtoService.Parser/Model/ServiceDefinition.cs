@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using ProtoService.Parser.Parser;
+using Proto.Service.Parser.Parser;
 
-namespace ProtoService.Parser.Model
+namespace Proto.Service.Parser.Model
 {
     public class ServiceDefinition : BaseDefinition, IEqualityComparer<ServiceDefinition>
     {

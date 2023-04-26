@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis.Text;
-using ProtoService.Parser.Model;
+using Proto.Service.Parser.Model;
 
-namespace ProtoService.Parser.Parser
+namespace Proto.Service.Parser.Parser
 {
     public class ProtoParser
     {

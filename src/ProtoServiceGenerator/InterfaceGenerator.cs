@@ -1,13 +1,13 @@
-﻿using Microsoft.CodeAnalysis.Text;
-using Microsoft.CodeAnalysis;
-using System.Linq;
-using ProtoService.Parser.Parser;
-using System;
+﻿using System;
 using System.Diagnostics;
-using ProtoService.Parser.Model;
+using System.Linq;
 using System.Text;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
+using Proto.Service.Parser.Model;
+using Proto.Service.Parser.Parser;
 
-namespace ProtoServiceGenerator
+namespace Proto.Service.Interface.Generator
 {
     [Generator]
     public class InterfaceGenerator : ISourceGenerator
@@ -30,7 +30,7 @@ namespace ProtoServiceGenerator
 //            }
 //#endif
         }
-        
+
         public void Execute(GeneratorExecutionContext context)
         {
             var protoFiles = context.AdditionalFiles.Where(at => at.Path.EndsWith(".proto", StringComparison.OrdinalIgnoreCase)

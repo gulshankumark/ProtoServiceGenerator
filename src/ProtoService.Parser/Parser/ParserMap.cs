@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ProtoService.Parser.Model;
+using Proto.Service.Parser.Model;
 
-namespace ProtoService.Parser.Parser
+namespace Proto.Service.Parser.Parser
 {
     public class ParserMap
     {

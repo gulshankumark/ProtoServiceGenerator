@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ProtoService.Parser.Model
+namespace Proto.Service.Parser.Model
 {
     public static class WellKnownGrpcTypes
     {
