@@ -1,5 +1,9 @@
 # Releases
 
+## 1.0.0-rc2
+
+- Auto-generation comment on each generated file
+
 ## 1.0.0-rc1
 
 - First official build

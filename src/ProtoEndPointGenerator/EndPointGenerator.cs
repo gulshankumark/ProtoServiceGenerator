@@ -61,6 +61,7 @@ namespace Proto.Service.ProtoEndPoint.Generator
         private string EmitCode(ServiceDefinition serviceDefinition)
         {
             StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"// This is auto-generated code from {nameof(EndPointGenerator)}");
             builder.AppendLine($"namespace {_parserMap.AssemblyName}.Services;");
             var serviceEndpointName = $"{serviceDefinition.Name}EndPoint";
             var serviceTypeName = $"{serviceDefinition.OptionCSharpNamespace}.I{serviceDefinition.Name}";

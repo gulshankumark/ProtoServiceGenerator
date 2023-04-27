@@ -62,6 +62,7 @@ namespace Proto.Service.AspNetController.Generator
         private string EmitCode(ServiceDefinition serviceDefinition)
         {
             StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"// This is auto-generated code from {nameof(ControllerGenerator)}");
             builder.AppendLine($"namespace {_parserMap.AssemblyName}.Controllers;");
             var serviceControllerName = $"{serviceDefinition.Name}Controller";
             var serviceTypeName = $"{serviceDefinition.OptionCSharpNamespace}.I{serviceDefinition.Name}";

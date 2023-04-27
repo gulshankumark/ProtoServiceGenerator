@@ -61,6 +61,7 @@ namespace Proto.Service.Interface.Generator
         private string EmitCode(ServiceDefinition serviceDefinition)
         {
             StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"// This is auto-generated code from {nameof(InterfaceGenerator)}");
             builder.AppendLine($"namespace {serviceDefinition.OptionCSharpNamespace}");
             builder.AppendLine("{");
             builder.AppendLine($"\tpublic interface I{serviceDefinition.Name}");

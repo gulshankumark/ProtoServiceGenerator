@@ -1,5 +1,10 @@
 # Releases
 
+## 1.0.0-rc2
+
+- `System.Threading.Tasks.Task` Instead of `Task` for Non-Implicit using projects
+- Auto-generation comment on each generated file
+
 ## 1.0.0-rc1
 
 - First official build
