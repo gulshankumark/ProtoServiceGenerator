@@ -1,6 +1,6 @@
 # Releases
 
-`## 1.0.0-rc3
+## 1.0.0-rc3
 
 - Updated Google.Protobuf to Version 3.22.4
 - Fix in parsing logic for rpc definitions
