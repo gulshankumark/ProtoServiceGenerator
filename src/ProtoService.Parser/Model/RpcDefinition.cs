@@ -16,7 +16,7 @@ namespace Proto.Service.Parser.Model
         private void ParseRpcString(string rpcString, HeaderDefinition headerDefinition)
         {
             var splits = rpcString.Split(' ');
-            RpcName = splits[1];
+            RpcName = splits[1].Split('(')[0].Trim();
             var splitsParam = rpcString.Split('(', ')').Where(x => !string.IsNullOrEmpty(x)).ToList();
             var inParamString = splitsParam[1];
             if (inParamString.StartsWith("stream"))
