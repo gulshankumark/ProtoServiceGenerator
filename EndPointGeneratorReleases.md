@@ -1,5 +1,11 @@
 # Releases
 
+## 1.0.0-rc4
+
+- Updated Dependencies list
+- Added GeneratedCode Attribute for the code generated
+- Intellisense support enabled via `EnforceExtendedAnalyzerRules` property in project
+
 ## 1.0.0-rc3
 
 - Updated Google.Protobuf to Version 3.22.4

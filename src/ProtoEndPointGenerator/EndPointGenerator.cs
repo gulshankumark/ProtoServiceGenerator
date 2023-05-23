@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -63,6 +64,7 @@ namespace Proto.Service.ProtoEndPoint.Generator
             StringBuilder builder = new StringBuilder();
             builder.AppendLine($"// This is auto-generated code from {nameof(EndPointGenerator)}");
             builder.AppendLine($"namespace {_parserMap.AssemblyName}.Services;");
+            builder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{Assembly.GetExecutingAssembly().GetName().Name}\", \"{Assembly.GetExecutingAssembly().GetName().Version}\")]");
             var serviceEndpointName = $"{serviceDefinition.Name}EndPoint";
             var serviceTypeName = $"{serviceDefinition.OptionCSharpNamespace}.I{serviceDefinition.Name}";
             var loggerTypeName = $"Microsoft.Extensions.Logging.ILogger<{serviceEndpointName}>";

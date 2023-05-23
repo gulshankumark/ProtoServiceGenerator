@@ -38,7 +38,7 @@ namespace Proto.Service.Parser.Model
         private (string MessageName, IReadOnlyList<string> Properties) ParseServiceString(string serviceString)
         {
             serviceString = serviceString.Replace("\r\n", "").Replace("\t", "");
-            var serviceName = serviceString.Split('{')[0].Trim().Split('(')[1].Trim();
+            var serviceName = serviceString.Split('{')[0].Trim().Split(' ','\t').Last().Trim();
             var rpcRaw = serviceString.Split('{', '}')[1].Trim();
             var rpcs = rpcRaw.Split(';');
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -67,6 +68,8 @@ namespace Proto.Service.AspNetController.Generator
             var serviceControllerName = $"{serviceDefinition.Name}Controller";
             var serviceTypeName = $"{serviceDefinition.OptionCSharpNamespace}.I{serviceDefinition.Name}";
             var loggerTypeName = $"Microsoft.Extensions.Logging.ILogger<{serviceControllerName}>";
+
+            builder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{Assembly.GetExecutingAssembly().GetName().Name}\", \"{Assembly.GetExecutingAssembly().GetName().Version}\")]");
             builder.AppendLine("[Microsoft.AspNetCore.Mvc.ApiController]");
             builder.AppendLine($"public partial class {serviceControllerName} : Microsoft.AspNetCore.Mvc.ControllerBase");
             builder.AppendLine("{");
@@ -93,7 +96,7 @@ namespace Proto.Service.AspNetController.Generator
                 builder.AppendLine($"\t\t\tvar response = await _service.{rpcDefinition.RpcName}({requestToServiceName});");
                 builder.AppendLine("\t\t\treturn Ok(response);");
                 builder.AppendLine("\t\t}");
-                builder.AppendLine("\t\tcatch (Exception ex)");
+                builder.AppendLine("\t\tcatch (System.Exception ex)");
                 builder.AppendLine("\t\t{");
                 builder.AppendLine("\t\t\treturn BadRequest();");
                 builder.AppendLine("\t\t}");

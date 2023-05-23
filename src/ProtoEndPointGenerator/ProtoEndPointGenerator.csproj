@@ -5,6 +5,7 @@
 		<AssemblyName>Proto.Service.ProtoEndPoint.Generator</AssemblyName>
 		<RootNamespace>$(AssemblyName)</RootNamespace>
 		<IsPackable>false</IsPackable>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<OutputPath>..\..\admin\bin\$(AssemblyName)\$(Configuration)</OutputPath>
