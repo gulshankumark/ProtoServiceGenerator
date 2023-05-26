@@ -1,5 +1,9 @@
 # Releases
 
+## 1.0.0-rc5
+
+- Added Route for the Controller
+
 ## 1.0.0-rc4
 
 - Updated Dependencies list

@@ -71,6 +71,7 @@ namespace Proto.Service.AspNetController.Generator
 
             builder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{Assembly.GetExecutingAssembly().GetName().Name}\", \"{Assembly.GetExecutingAssembly().GetName().Version}\")]");
             builder.AppendLine("[Microsoft.AspNetCore.Mvc.ApiController]");
+            builder.AppendLine("[Microsoft.AspNetCore.Mvc.Route(\"[controller]\")]");
             builder.AppendLine($"public partial class {serviceControllerName} : Microsoft.AspNetCore.Mvc.ControllerBase");
             builder.AppendLine("{");
             builder.AppendLine($"\tprivate readonly {serviceTypeName} _service;");
