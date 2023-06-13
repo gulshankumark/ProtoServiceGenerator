@@ -23,12 +23,12 @@ namespace Proto.Service.AspNetController.Generator
 
         public void Initialize(GeneratorInitializationContext context)
         {
-//#if DEBUG
-//            if (!Debugger.IsAttached)
-//            {
-//                Debugger.Launch();
-//            }
-//#endif
+            //#if DEBUG
+            //            if (!Debugger.IsAttached)
+            //            {
+            //                Debugger.Launch();
+            //            }
+            //#endif
         }
 
         public void Execute(GeneratorExecutionContext context)
@@ -87,7 +87,7 @@ namespace Proto.Service.AspNetController.Generator
             {
                 var inputParam = rpcDefinition.InParameter.ToControllerInputParameter();
                 var requestToServiceName = string.IsNullOrEmpty(rpcDefinition.InParameter.Name) ? string.Empty : "request";
-                builder.AppendLine(inputParam != null
+                builder.AppendLine(inputParam is { Length: > 0 }
                     ? $"\t[Microsoft.AspNetCore.Mvc.HttpPost(nameof({rpcDefinition.RpcName}))]"
                     : $"\t[Microsoft.AspNetCore.Mvc.HttpGet(nameof({rpcDefinition.RpcName}))]");
                 builder.AppendLine($"\tpublic async partial System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> {rpcDefinition.RpcName}({inputParam})");

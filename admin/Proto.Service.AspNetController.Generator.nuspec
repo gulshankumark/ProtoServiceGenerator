@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>Proto.Service.AspNetController.Generator</id>
-    <version>1.0.0.0-rc5</version>
+    <version>1.0.0.0-rc6</version>
     <authors>Gulshan Kumar K</authors>
     <license type="expression">MIT</license>
     <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>

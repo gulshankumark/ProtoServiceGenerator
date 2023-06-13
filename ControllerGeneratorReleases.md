@@ -1,5 +1,9 @@
 # Releases
 
+## 1.0.0-rc6
+
+- HttpGet will be created for the methods without parameters.
+
 ## 1.0.0-rc5
 
 - Added Route for the Controller
