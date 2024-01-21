@@ -52,15 +52,23 @@ function UpdateNuspec ([String]$f, [String]$vr)
     cmd.exe /c nuget.exe pack $NuspecFilePath
 }
 
-#funciton Publish-Nuget()
-#{
-    #echo "Publishing nuget"
-    #Param ([string]$Version)
-    # $NupkgFilePath = Resolve-Path .\$NuspecFileName.$Version.nupkg
-    # echo $NupkgFilePath
-    # rem nuget setApiKey yourApiKey
-    # cmd.exe /c nuget push $NupkgFilePath -Source https://api.nuget.org/v3/index.json
-#}
+function Publish-All-Nuspec($ver)
+{
+    foreach ($file in @("Proto.Service.Interface.Generator","Proto.Service.ProtoEndPoint.Generator","Proto.Service.AspNetController.Generator"))
+    {
+        Publish-Nuget $file $ver
+    }
+}
+
+function Publish-Nuget($f, $vr)
+{
+    echo "Publishing nuget"
+    $filePath = -join('.\', $f, '.', $vr, '.nupkg');
+    $NupkgFilePath = Resolve-Path $filePath
+    echo $NupkgFilePath
+    nuget setApiKey yourApiKey
+    cmd.exe /c nuget push $NupkgFilePath -Source https://api.nuget.org/v3/index.json
+}
 
 function GitPushAndTag()
 {
@@ -69,17 +77,23 @@ function GitPushAndTag()
     echo $Branch
     echo $Version
     $versionFile = Resolve-Path .\Version.cs
+    $interfaceGeneratorFile = Resolve-Path .\Proto.Service.Interface.Generator.nuspec
+    $protoEndPointGeneratorFile = Resolve-Path .\Proto.Service.ProtoEndPoint.Generator.nuspec
+    $aspNetControllerGeneratorFile = Resolve-Path .\Proto.Service.AspNetController.Generator.nuspec
+    $intefaceGeneratorReleasesFile = Resolve-Path ..\IntefaceGeneratorReleases.md
+    $endPointGeneratorReleasesFile = Resolve-Path ..\EndPointGeneratorReleases.md
+    $controllerGeneratorReleasesFile = Resolve-Path ..\ControllerGeneratorReleases.md
     $oldGitUserName = git config user.name
     $oldGitUserEmail = git config user.email
     git config user.name gulshan
     git config user.email gulshanjitm@gmail.com
     git add $versionFile
-    git add Resolve-Path .\Proto.Service.Interface.Generator.nuspec
-    git add Resolve-Path .\Proto.Service.ProtoEndPoint.Generator.nuspec
-    git add Resolve-Path .\Proto.Service.AspNetController.Generator.nuspec
-    git add Resolve-Path ..\IntefaceGeneratorReleases.md
-    git add Resolve-Path ..\EndPointGeneratorReleases.md
-    git add Resolve-Path ..\ControllerGeneratorReleases.md
+    git add $interfaceGeneratorFile
+    git add $protoEndPointGeneratorFile
+    git add $aspNetControllerGeneratorFile
+    git add $intefaceGeneratorReleasesFile
+    git add $endPointGeneratorReleasesFile
+    git add $controllerGeneratorReleasesFile
     git commit -m "Updated version number to $Version"
     git push origin $Branch
 
@@ -98,8 +112,8 @@ if($r.Success){
     Update-AllAssemblyInfoFiles $v
     Build-All
     Update-All-Nuspec $v
-    # Publish-Nuget $v
-    # GitPushAndTag $v
+    GitPushAndTag $v
+    #Publish-All-Nuspec $v
 }
 else{
     Write-Host "Bad input!" -ForegroundColor Red
