@@ -1,5 +1,15 @@
 # Releases
 
+## 1.0.0.10000-rc1
+
+- Exception logging support in controller methods.
+- Release build name change
+- Commented stub code generated for controller
+
+## 1.0.0-rc7
+
+- Exception logging and sending exception message to client.
+
 ## 1.0.0-rc6
 
 - HttpGet will be created for the methods without parameters.

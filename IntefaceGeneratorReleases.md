@@ -1,5 +1,9 @@
 # Releases
 
+## 1.0.0.10000-rc1
+
+- Release build name change
+
 ## 1.0.0-rc4
 
 - Updated Dependencies list

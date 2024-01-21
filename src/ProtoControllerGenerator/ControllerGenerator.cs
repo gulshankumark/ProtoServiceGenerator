@@ -23,12 +23,12 @@ namespace Proto.Service.AspNetController.Generator
 
         public void Initialize(GeneratorInitializationContext context)
         {
-            //#if DEBUG
-            //            if (!Debugger.IsAttached)
-            //            {
-            //                Debugger.Launch();
-            //            }
-            //#endif
+#if DEBUG
+            if (!Debugger.IsAttached)
+            {
+                Debugger.Launch();
+            }
+#endif
         }
 
         public void Execute(GeneratorExecutionContext context)
@@ -62,6 +62,7 @@ namespace Proto.Service.AspNetController.Generator
 
         private string EmitCode(ServiceDefinition serviceDefinition)
         {
+            var commentedClass = new StringBuilder();
             StringBuilder builder = new StringBuilder();
             builder.AppendLine($"// This is auto-generated code from {nameof(ControllerGenerator)}");
             builder.AppendLine($"namespace {_parserMap.AssemblyName}.Controllers;");
@@ -72,7 +73,9 @@ namespace Proto.Service.AspNetController.Generator
             builder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{Assembly.GetExecutingAssembly().GetName().Name}\", \"{Assembly.GetExecutingAssembly().GetName().Version}\")]");
             builder.AppendLine("[Microsoft.AspNetCore.Mvc.ApiController]");
             builder.AppendLine("[Microsoft.AspNetCore.Mvc.Route(\"[controller]\")]");
+            commentedClass.AppendLine($"/* public partial class {serviceControllerName}");
             builder.AppendLine($"public partial class {serviceControllerName} : Microsoft.AspNetCore.Mvc.ControllerBase");
+            commentedClass.AppendLine("{");
             builder.AppendLine("{");
             builder.AppendLine($"\tprivate readonly {serviceTypeName} _service;");
             builder.AppendLine($"\tprivate readonly {loggerTypeName} _logger;");
@@ -90,6 +93,8 @@ namespace Proto.Service.AspNetController.Generator
                 builder.AppendLine(inputParam is { Length: > 0 }
                     ? $"\t[Microsoft.AspNetCore.Mvc.HttpPost(nameof({rpcDefinition.RpcName}))]"
                     : $"\t[Microsoft.AspNetCore.Mvc.HttpGet(nameof({rpcDefinition.RpcName}))]");
+
+                commentedClass.AppendLine($"\tpublic partial System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> {rpcDefinition.RpcName}({inputParam});");
                 builder.AppendLine($"\tpublic async partial System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> {rpcDefinition.RpcName}({inputParam})");
                 builder.AppendLine("\t{");
                 builder.AppendLine("\t\ttry");
@@ -99,13 +104,27 @@ namespace Proto.Service.AspNetController.Generator
                 builder.AppendLine("\t\t}");
                 builder.AppendLine("\t\tcatch (System.Exception ex)");
                 builder.AppendLine("\t\t{");
-                builder.AppendLine("\t\t\treturn BadRequest();");
+                builder.AppendLine("\t\t\t_logger.Log<System.Exception>(Microsoft.Extensions.Logging.LogLevel.Error, 0, ex, ex, MessageFormatter);");
+                builder.AppendLine("\t\t\treturn BadRequest(ex.Message);");
                 builder.AppendLine("\t\t}");
                 builder.AppendLine("\t}");
             }
 
+            builder.AppendLine();
+            builder.AppendLine("\tprivate string MessageFormatter(System.Exception _, System.Exception ex)");
+            builder.AppendLine("\t{");
+            builder.AppendLine("\t\t return ex.ToString();");
+            builder.AppendLine("\t}");
+
+            commentedClass.AppendLine("} */");
             builder.AppendLine("}");
-            return builder.ToString();
+
+            var returnClassStringBuilder = new StringBuilder();
+            returnClassStringBuilder.Append(builder);
+            returnClassStringBuilder.AppendLine();
+            returnClassStringBuilder.AppendLine(commentedClass.ToString());
+
+            return returnClassStringBuilder.ToString();
         }
     }
 }

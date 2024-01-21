@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -22,12 +23,12 @@ namespace Proto.Service.ProtoEndPoint.Generator
 
         public void Initialize(GeneratorInitializationContext context)
         {
-//#if DEBUG
-//            if (!Debugger.IsAttached)
-//            {
-//                Debugger.Launch();
-//            }
-//#endif
+#if DEBUG
+            if (!Debugger.IsAttached)
+            {
+                Debugger.Launch();
+            }
+#endif
         }
 
         public void Execute(GeneratorExecutionContext context)
@@ -61,6 +62,7 @@ namespace Proto.Service.ProtoEndPoint.Generator
 
         private string EmitCode(ServiceDefinition serviceDefinition)
         {
+            var commentedClass = new StringBuilder();
             StringBuilder builder = new StringBuilder();
             builder.AppendLine($"// This is auto-generated code from {nameof(EndPointGenerator)}");
             builder.AppendLine($"namespace {_parserMap.AssemblyName}.Services;");
@@ -69,7 +71,9 @@ namespace Proto.Service.ProtoEndPoint.Generator
             var serviceTypeName = $"{serviceDefinition.OptionCSharpNamespace}.I{serviceDefinition.Name}";
             var loggerTypeName = $"Microsoft.Extensions.Logging.ILogger<{serviceEndpointName}>";
             builder.AppendLine($"public partial class {serviceEndpointName} : {serviceDefinition.OptionCSharpNamespace}.{serviceDefinition.Name}.{serviceDefinition.Name}Base");
+            commentedClass.AppendLine($"/* public partial class {serviceEndpointName}");
             builder.AppendLine("{");
+            commentedClass.AppendLine("{");
             builder.AppendLine($"\tprivate readonly {serviceTypeName} _service;");
             builder.AppendLine($"\tprivate readonly {loggerTypeName} _logger;");
 
@@ -84,6 +88,7 @@ namespace Proto.Service.ProtoEndPoint.Generator
                 var requestToServiceName = string.IsNullOrEmpty(rpcDefinition.InParameter.Name) ? "context" : "request, context";
                 var inputParam = rpcDefinition.InParameter.ToInputParameter(false);
                 //var requestToServiceName = inputParam.Contains("request") ? "request, context" : "context";
+                commentedClass.AppendLine($"\tpublic override partial {rpcDefinition.ResponseParameter.ToResponseParameter()} {rpcDefinition.RpcName}({inputParam});");
                 builder.AppendLine(
                     $"\tpublic override async partial {rpcDefinition.ResponseParameter.ToResponseParameter()} {rpcDefinition.RpcName}({inputParam})");
                 builder.AppendLine("\t{");
@@ -93,7 +98,14 @@ namespace Proto.Service.ProtoEndPoint.Generator
             }
 
             builder.AppendLine("}");
-            return builder.ToString();
+            commentedClass.AppendLine("} */");
+
+            var returnClassStringBuilder = new StringBuilder();
+            returnClassStringBuilder.Append(builder);
+            returnClassStringBuilder.AppendLine();
+            returnClassStringBuilder.AppendLine(commentedClass.ToString());
+
+            return returnClassStringBuilder.ToString();
         }
     }
 }
