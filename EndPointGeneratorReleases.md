@@ -1,6 +1,6 @@
 # Releases
 
-## 1.0.0.10000-rc1
+## 1.0.0.10000
 
 - Release build name change
 - Commented stub code generated for controller

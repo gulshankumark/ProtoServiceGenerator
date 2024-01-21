@@ -1,6 +1,6 @@
 # Releases
 
-## 1.0.0.10000-rc1
+## 1.0.0.10000
 
 - Exception logging support in controller methods.
 - Release build name change
