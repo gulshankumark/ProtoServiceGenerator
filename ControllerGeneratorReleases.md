@@ -1,5 +1,10 @@
 # Releases
 
+## 1.0.0.10002
+
+- Support for .net 8 and .net 9
+- Updated dependencies
+
 ## 1.0.0.10001
 
 - Exception logging support in controller methods.
