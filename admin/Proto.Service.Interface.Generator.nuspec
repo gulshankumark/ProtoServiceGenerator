@@ -1,41 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
-	<metadata>
-		<id>Proto.Service.Interface.Generator</id>
-		<version>1.0.0.10002</version>
-		<authors>Gulshan Kumar K</authors>
-		<license type="expression">MIT</license>
-		<licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
-		<description>Automatically generate C# interface for the service in the proto files</description>
-		<copyright>Copyright (c) 2025 Gulshan Kumar K</copyright>
-		<tags>autogenerator code generation roslyn grpc</tags>
-		<repository type="git" url="https://github.com/gulshankumark/ProtoServiceGenerator" />
-		<dependencies>
-			<group targetFramework=".NETStandard2.0">
-				<dependency id="Google.Protobuf" version="3.30.2" />
-				<dependency id="System.Collections.Immutable" version="9.0.4" />
-				<dependency id="Microsoft.CodeAnalysis" version="4.13.0" exclude="Build,Analyzers" />
-				<dependency id="Microsoft.CodeAnalysis.CSharp" version="4.13.0" exclude="Build,Analyzers" />
-				<dependency id="Microsoft.CodeAnalysis.Analyzers" version="3.11.0" exclude="Build,Analyzers" />
-			</group>
-			<group targetFramework="net8.0">
-				<dependency id="Google.Protobuf" version="3.30.2" />
-				<dependency id="System.Collections.Immutable" version="9.0.4" />
-				<dependency id="Microsoft.CodeAnalysis" version="4.13.0" exclude="Build,Analyzers" />
-				<dependency id="Microsoft.CodeAnalysis.CSharp" version="4.13.0" exclude="Build,Analyzers" />
-				<dependency id="Microsoft.CodeAnalysis.Analyzers" version="3.11.0" exclude="Build,Analyzers" />
-			</group>
-			<group targetFramework="net9.0">
-				<dependency id="Google.Protobuf" version="3.30.2" />
-				<dependency id="System.Collections.Immutable" version="9.0.4" />
-				<dependency id="Microsoft.CodeAnalysis" version="4.13.0" exclude="Build,Analyzers" />
-				<dependency id="Microsoft.CodeAnalysis.CSharp" version="4.13.0" exclude="Build,Analyzers" />
-				<dependency id="Microsoft.CodeAnalysis.Analyzers" version="3.11.0" exclude="Build,Analyzers" />
-			</group>
-		</dependencies>
-	</metadata>
-	<files>
-		<file src="bin\Proto.Service.Interface.Generator\Release\*.dll" target="analyzers\dotnet\cs" />
-		<file src="tools\*.ps1" target="tools\" />
-	</files>
+  <metadata>
+    <id>Proto.Service.Interface.Generator</id>
+    <version>1.0.0.10002</version>
+    <authors>Gulshan Kumar K</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <description>Automatically generate C# interface for the service in the proto files</description>
+    <copyright>Copyright (c) 2025 Gulshan Kumar K</copyright>
+    <tags>autogenerator code generation roslyn grpc</tags>
+    <repository type="git" url="https://github.com/gulshankumark/ProtoServiceGenerator" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Google.Protobuf" version="3.30.2" />
+        <dependency id="System.Collections.Immutable" version="9.0.4" />
+        <dependency id="Microsoft.CodeAnalysis" version="4.13.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp" version="4.13.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CodeAnalysis.Analyzers" version="3.11.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="Google.Protobuf" version="3.30.2" />
+        <dependency id="System.Collections.Immutable" version="9.0.4" />
+        <dependency id="Microsoft.CodeAnalysis" version="4.13.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp" version="4.13.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CodeAnalysis.Analyzers" version="3.11.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="Google.Protobuf" version="3.30.2" />
+        <dependency id="System.Collections.Immutable" version="9.0.4" />
+        <dependency id="Microsoft.CodeAnalysis" version="4.13.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp" version="4.13.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CodeAnalysis.Analyzers" version="3.11.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Proto.Service.Interface.Generator\Release\*.dll" target="analyzers\dotnet\cs" />
+    <file src="tools\*.ps1" target="tools\" />
+  </files>
 </package>
